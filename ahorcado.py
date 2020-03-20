@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import random
-
+import words
 images=['''
 
 +--------------------+
@@ -151,37 +151,12 @@ images=['''
                  `##'       '##`
 
  ''']
-#list the words
-WORDS=[
-    'lavadora',
-    'secadora',
-    'transformers',
-    'diputado',
-    'fime',
-    'sistemas_computacionales',
-    'ella_no_te_ama',
-    'gobierno',
-    'heroe',
-    'teatro',
-    'jarra',
-    'cinta',
-    'jurado',
-    'pantano',
-    'ola_de_mar',
-    'sorfista_de_3_metros',
-    'pato',
-    'oso',
-    'perro',
-    'animal',
-    'selva',
-    'mono',
-    'computadora',
-    'teclado']
 
 
 def random_word():
-    idx = random.randint(0, len(WORDS) - 1 )
-    return WORDS[idx]
+    idx = random.randint(0,2740)
+    return words.WORDS(idx)
+    
 
 def display_board(hidden_word,tries):
     os.system("cls")
@@ -210,8 +185,9 @@ def run():
 
             if tries ==7:
                 display_board(hidden_word,tries)
+                os.system("cls")
                 print('')
-                print('! you lost hahahaha ¡ The word is {}'.format(word))
+                print('! you lost hahahaha ¡ The word is:[ {} ]'.format(word))
                 print(images[7])
                 break
         else:
@@ -224,7 +200,7 @@ def run():
         except ValueError:
             os.system("cls")
             y=len(word)
-            x=33-y
+            x=29-y
             print('''
             ______________________________________________________
            |                                                      |
@@ -233,7 +209,7 @@ def run():
            |   |C:\> _Winner                                 |    |
            |   |                                             |    |
            |   |!congratulations ¡                           |    |
-           |   |The word is:{}{}|    |
+           |   |The word is:[ {} ]{}|    |
            |   |                                             |    |
            |   |                                             |    |
            |   |                                             |    |
@@ -272,3 +248,7 @@ if __name__ == '__main__':
         else:
             os.system("cls")
             break
+
+
+# At the moment the words are in spanish
+# Por el momento las palabras usadas se encuentran en español
