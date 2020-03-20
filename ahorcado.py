@@ -151,6 +151,7 @@ images=['''
                  `##'       '##`
 
  ''']
+#list the words
 WORDS=[
     'lavadora',
     'secadora',
