@@ -152,8 +152,7 @@ images=['''
 
  ''']
 
-vowels=['a':'á','e':'é','i':'í','o':'ó','u':'ú']
-
+vowels={'a':'á','e':'é','i':'í','o':'ó','u':'ú'}
 #funcion que regresa un palabra al azar
 def random_word():
     idx = random.randint(0,2740)
