@@ -155,7 +155,8 @@ images=['''
 vowels={'a':'á','e':'é','i':'í','o':'ó','u':'ú'}
 #funcion que regresa un palabra al azar
 def random_word():
-    idx = random.randint(0,2740)
+    idx = 0
+    #random.randint(0,2740)
     return words.WORDS(idx)
 
 
@@ -170,7 +171,7 @@ def display_board(hidden_word,tries):
 
 #funcion principal
 def main():
-    word = random_word()
+    word = random_word().lower()
     hidden_word =['-'] * len(word) #creo la palabra oculta
     tries = 0 #intentos fallidos
 
@@ -178,13 +179,26 @@ def main():
 
         display_board(hidden_word,tries)
         current_letter = str(input("write one word:"))
-        stressed vowel
+
+        try:
+            stressed_vowel=vowels[current_letter]
+        except KeyError:
+            stressed_vowel='Null'
+
 
         letter_idx=[]
-
         for idx in range(len(word)):
+
             if word[idx] == current_letter:
                 letter_idx.append(idx)
+
+            if word[idx] == stressed_vowel:
+                letter_idx.append(idx)
+
+            if word[idx] == 'ü':
+                letter_idx.append(idx)
+
+
 
         if len(letter_idx) == 0:
             tries += 1
@@ -198,7 +212,7 @@ def main():
                 break
         else:
             for idx in letter_idx:
-                hidden_word[idx] = current_letter
+                hidden_word[idx] = word[idx]
             letter_idx = []
 
         try:
