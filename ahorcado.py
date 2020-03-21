@@ -152,11 +152,9 @@ images=['''
 
  ''']
 
-vowels={'a':'á','e':'é','i':'í','o':'ó','u':'ú'}
 #funcion que regresa un palabra al azar
 def random_word():
-    idx = 0
-    #random.randint(0,2740)
+    idx=random.randint(0,2741)
     return words.WORDS(idx)
 
 
@@ -164,13 +162,14 @@ def random_word():
 #tambien imprime la palabra oculta
 def display_board(hidden_word,tries):
     os.system("cls")
-    print(images[tries])#imprimo la imagen que correspon a numero de errores 
+    print(images[tries])#imprimo la imagen que correspon a numero de errores
     print()
     print(hidden_word)
 
 
 #funcion principal
 def main():
+    vowels={'a':'á','e':'é','i':'í','o':'ó','u':'ú'}
     word = random_word().lower()
     hidden_word =['-'] * len(word) #creo la palabra oculta
     tries = 0 #intentos fallidos
