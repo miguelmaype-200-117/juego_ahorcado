@@ -178,6 +178,7 @@ def main():
 
         display_board(hidden_word,tries)
         current_letter = str(input("write one word:"))
+        stressed vowel
 
         letter_idx=[]
 
