@@ -164,7 +164,7 @@ def random_word():
 #tambien imprime la palabra oculta
 def display_board(hidden_word,tries):
     os.system("cls")
-    print(images[tries])
+    print(images[tries])#imprimo la imagen que correspon a numero de errores 
     print()
     print(hidden_word)
 
@@ -179,45 +179,48 @@ def main():
 
         display_board(hidden_word,tries)
         current_letter = str(input("write one word:"))
-
+        #uso esta parte para buscar la mis vocal pero con acento
         try:
             stressed_vowel=vowels[current_letter]
+            #si la letra que ingreso no es una volcal capturo el error de llave
         except KeyError:
+            # y le doy un valor nulo
             stressed_vowel='Null'
 
 
         letter_idx=[]
         for idx in range(len(word)):
 
-            if word[idx] == current_letter:
+            if word[idx] == current_letter: #evaluo si la letra vocal o no este dentro de la palabra
+                letter_idx.append(idx)      #si si esta capturo su indice
+
+            if word[idx] == stressed_vowel:#con esto evaluo voval con acento
                 letter_idx.append(idx)
 
-            if word[idx] == stressed_vowel:
-                letter_idx.append(idx)
-
-            if word[idx] == 'ü':
+            if word[idx] == 'ü':#caso especial con la u
                 letter_idx.append(idx)
 
 
 
-        if len(letter_idx) == 0:
-            tries += 1
 
-            if tries ==7:
+        if len(letter_idx) == 0:#si la lista de indices es 0 significa que la letra ingresada no esta en la palabra
+            tries += 1 #aumento el contador de errores
+
+            if tries == 7:#si lleva 7 errores entonces ya perdio
                 display_board(hidden_word,tries)
                 os.system("cls")
                 print('')
-                print('! you lost hahahaha ¡ The word is:[ {} ]'.format(word))
-                print(images[7])
+                print('! you lost hahahaha ¡ The word is:[ {} ]'.format(word)) #le  muestro la palabra correpta
+                print(images[7])#imprimo la ultiam imagen de mi lista images
                 break
         else:
             for idx in letter_idx:
-                hidden_word[idx] = word[idx]
-            letter_idx = []
+                hidden_word[idx] = word[idx]#itero los indeces y busco la letra dentro de la palabra y la remplaco en mi lista de palabra oculta
+            letter_idx = []#limpio la lista de los indices
 
         try:
-            hidden_word.index('-')
-        except ValueError:
+            hidden_word.index('-')#compruebo o busco aver si aun hay - esto quiere decir que aun no termina
+        except ValueError:#de lo contrario si no lo encuentra capturo el error y doy fin al programa
             os.system("cls")
             y=len(word)
             x=29-y
